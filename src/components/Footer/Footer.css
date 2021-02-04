@@ -1,0 +1,40 @@
+.footer-container {
+    font-size: 14px;
+}
+
+.footer-row-1 {
+    text-align: center;
+
+    margin: 20px 10px 10px 10px;
+}
+
+.footer-row-2 {
+    text-align: center;
+}
+
+.linked {
+    color: #d0b892;
+}
+
+.linked:hover {
+    text-decoration: none;
+    color: #e7dfd6;
+}
+
+.col-footer-1, .col-footer-2, .col-footer-3 {
+    min-width: 250px;
+    margin: 5px 0;
+}
+
+.col-footer-3 ul {
+    margin: 5px 0;
+}
+.img-apple{
+    margin-top: -10px;
+    cursor: pointer;
+}
+
+.img-google {
+    margin-top: 0px;
+    cursor: pointer;
+}

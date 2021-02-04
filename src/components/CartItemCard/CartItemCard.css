@@ -1,0 +1,25 @@
+.wrapper-card-item-cart{
+
+}
+
+.wrapper-card-item-cart img{
+    width: 70%;
+}
+
+.row-card-item{
+    align-items: center;
+}
+
+.qty{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.btn-cart {
+    text-transform: uppercase;
+    margin: 5px 10px;
+    background-color: #d0b892;
+    color: #381c14;
+}

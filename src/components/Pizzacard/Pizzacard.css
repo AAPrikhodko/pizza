@@ -1,0 +1,43 @@
+.card{
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.btn-add-to-cart{
+    text-transform: uppercase;
+    margin: 5px 10px;
+    background-color: #d0b892;
+}
+.btn-add-to-cart:hover{
+    background-color: #92806a;
+}
+
+.pizza-name{
+    background-color: #381c14;
+    color: #d0b892;
+    padding: 4px 0;
+}
+.pizza-description{
+    font-size: 15px;
+    min-height: 100px;
+}
+.price-area{
+    display: inline-block;
+}
+
+.fa-dollar-sign-pizzacard{
+    font-size: 25px;
+    color: #381c14;
+}
+.price {
+    display: inline-block;
+    color: #381c14;
+    margin-left: 4px;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.btn-prc-area{
+    display: flex;
+    justify-content: space-between;
+}

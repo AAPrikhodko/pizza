@@ -1,0 +1,119 @@
+.navbar{
+    background-color: #381c14;
+    margin: 10px 30px;
+    opacity: 0.96;
+}
+.nav-menu{
+    flex:1;
+    text-align: left;
+    align-items: center;
+}
+.nav-menu ul{
+    display: block;
+    list-style-type: none;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.nav-menu ul li{
+    display: inline-block;
+    margin: 10px;
+}
+.nav-menu ul li a{
+    text-decoration: none;
+    color: #d0b892;
+    letter-spacing: 1px;
+}
+.btn-cart{
+    text-transform: uppercase;
+    margin: 5px 10px;
+    background-color: #d0b892;
+}
+.btn-sign-in{
+    text-transform: uppercase;
+    margin: 5px 10px;
+    background-color: #d0b892;
+}
+
+
+.btn-icon {
+    display: none;
+    margin-left: 3vh;
+    color: #d0b892;
+    font-size: 20px;
+}
+.btn-sign-in:hover, .btn-cart:hover{
+    background-color: #92806a;
+}
+
+
+.icon-cart-with-counter{
+    display: inline-block;
+    position: relative;
+}
+
+.icon-cart-with-counter span{
+    color: #d0b892;
+    font-size: 14px;
+    font-weight: 900;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+
+.burger-menu{
+    background-color: #381c14;
+}
+
+#dropdownMenuButton > i{
+    color: #d0b892;
+}
+
+.burger-menu a{
+    background-color: #381c14;
+    color: #d0b892;
+    letter-spacing: 1px;
+}
+
+#dropdownMenuButton > div > a{
+    background-color: #381c14;
+    color: #d0b892;
+}
+
+.icon-group{
+    display: none;
+}
+
+.icon-group i{
+    color: #d0b892;
+    cursor: pointer;
+    margin: 15px;
+    font-size: 20px;
+}
+
+.icon-group i:hover{
+    color: #e7dfd6;
+}
+
+
+
+@media (max-width: 900px) {
+    .btn-icon {
+        display: block;
+        flex: 1 1;
+        text-align: left;
+        align-items: center;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .button-group {
+        display: none;
+    }
+    .icon-group{
+        display: inline-block;
+    }
+}
