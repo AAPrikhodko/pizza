@@ -1,18 +1,26 @@
 import {Modal} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Formik} from "formik"
 import * as yup from 'yup'
 import {connect} from "react-redux";
 import "./ModalWindowSignIn.css"
 import ModalWindowSignUp from "../ModalWindowSignUp/ModalWindowSignUp";
-import {handleSignIn} from "../../redux/authReducer";
+import {handleSignIn, setAuthErrToFalse} from "../../redux/authReducer";
 
 
-const ModalWindowSignIn = ({show, handleClose, handleSignIn}) => {
+const ModalWindowSignIn = ({show, handleClose, handleSignIn, auth, authErr, setAuthErrToFalse}) => {
 
     const [showSignUpModal, setShowSignUpModal] = useState(false)
 
-    const handleCloseSignUpModal = () => setShowSignUpModal(false)
+    const handleBack = () => {
+        setAuthErrToFalse()
+        handleClose()
+    }
+
+    const handleCloseSignUpModal = () => {
+        setShowSignUpModal(false)
+        handleClose()
+    }
     const handleShowSignUpModal = () => setShowSignUpModal(true)
 
     const validationSchema = yup.object().shape({
@@ -41,7 +49,6 @@ const ModalWindowSignIn = ({show, handleClose, handleSignIn}) => {
                     validationSchema={validationSchema}
                     onSubmit={(values)=>{
                         handleSignIn(values.email, values.password);
-                        handleClose()
                     }}
             >
                 {({
@@ -52,7 +59,9 @@ const ModalWindowSignIn = ({show, handleClose, handleSignIn}) => {
                       handleBlur,
                       handleSubmit
                   }) => (
-                        <div className="container wrapper-modal">
+
+
+                      <div className="container wrapper-modal">
                             <div className="row row-header-modal my-4">
                                 <div className="col text-center">Sign in</div>
                             </div>
@@ -74,12 +83,15 @@ const ModalWindowSignIn = ({show, handleClose, handleSignIn}) => {
                                 <div className="col-6 ">
                                     {touched.password && errors.password && <div className='checkout_errMessage'> {errors.password}</div>}
                                 </div>
+                                {authErr && <div className="col-12 mx-auto">
+                                    <div className='checkout_errMessage'> {authErr}</div>
+                                </div>}
 
                             </div>
 
                             <div className="row row-footer-modal my-4">
                                 <div className="col my-1">
-                                    <button className="btn btn-cart " onClick={handleClose}>
+                                    <button className="btn btn-cart " onClick={handleBack}>
                                         <i className="fas fa-long-arrow-alt-left"/> BACK
                                     </button>
                                 </div>
@@ -99,9 +111,18 @@ const ModalWindowSignIn = ({show, handleClose, handleSignIn}) => {
 
                     </Formik>
             <ModalWindowSignUp show={showSignUpModal} handleClose={handleCloseSignUpModal}/>
+            {(auth.uid && !authErr) && handleClose()}
         </Modal>
 
     )
 }
 
-export default connect(null,{handleSignIn})(ModalWindowSignIn)
+const MapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth,
+        authErr: state.auth.authErr
+    }
+}
+
+
+export default connect(MapStateToProps,{handleSignIn, setAuthErrToFalse})(ModalWindowSignIn)

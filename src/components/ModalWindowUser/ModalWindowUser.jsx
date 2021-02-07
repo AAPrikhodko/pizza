@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import "./ModalWindowUser.css"
 import {handleSignOut} from "../../redux/authReducer";
 
-const ModalWindowUser = ({show, handleClose, handleSignOut, signInUserIndex, users}) => {
+const ModalWindowUser = ({show, handleClose, handleSignOut, signInUserIndex, users, profile}) => {
 
     return (
         <Modal
@@ -18,7 +18,7 @@ const ModalWindowUser = ({show, handleClose, handleSignOut, signInUserIndex, use
             <div className="container wrapper-modal">
 
                 <div className="row row-header-modal my-4">
-                    <div className="col text-center">Welcome {signInUserIndex !==null && users[signInUserIndex].name}</div>
+                    <div className="col text-center">Welcome {profile.name}</div>
                 </div>
 
                 <div className="row text-center">
@@ -49,7 +49,8 @@ const ModalWindowUser = ({show, handleClose, handleSignOut, signInUserIndex, use
 const MapStateToProps = (state) => {
     return {
         signInUserIndex: state.auth.signInUserIndex,
-        users: state.auth.users
+        users: state.auth.users,
+        profile: state.firebase.profile
     }
 }
 

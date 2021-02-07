@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import ModalWindowUser from "../ModalWindowUser/ModalWindowUser";
 import {orderToFalse} from "../../redux/cartReducer";
 
-const Header = ({cartQty, signInUserIndex, users, orderToFalse}) => {
+const Header = ({cartQty, signInUserIndex, users, orderToFalse, auth, profile}) => {
 
     const [showCartModal, setShowCartModal] = useState(false)
     const [showSignInModal, setShowSignInModal] = useState(false)
@@ -23,6 +23,7 @@ const Header = ({cartQty, signInUserIndex, users, orderToFalse}) => {
     const handleCloseUserModal = () => setShowUserModal(false)
     const handleShowUserModal = () => setShowUserModal(true)
 
+    console.log(auth)
     return (
         <>
             <div className="navbar">
@@ -47,13 +48,12 @@ const Header = ({cartQty, signInUserIndex, users, orderToFalse}) => {
                     <button className="btn btn-cart" onClick={handleShowCartModal}>Cart <span
                         className="badge badge-light">{cartQty === 0 ? '' : cartQty}</span></button>
 
-                    {signInUserIndex === null
+                    { !auth.uid
                         ? <button className="btn btn-sign-in"
                                   onClick={handleShowSignInModal}>Sign in</button>
                         : <button className="btn btn-sign-in"
-                                  onClick={handleShowUserModal}>{users[signInUserIndex].name}</button>
+                                  onClick={handleShowUserModal}>{profile.name}</button>
                     }
-
 
                 </div>
                 <div className="icon-group">
@@ -61,7 +61,7 @@ const Header = ({cartQty, signInUserIndex, users, orderToFalse}) => {
                         <i className="fas fa-shopping-cart"/>
                         <span>{cartQty === 0 ? '' : cartQty}</span>
                     </div>
-                    {signInUserIndex === null
+                    {!auth.uid
                         ? <i className="fas fa-user" onClick={handleShowSignInModal}/>
                         : <i className="fas fa-smile-wink" onClick={handleShowUserModal}/>
                     }
@@ -75,14 +75,17 @@ const Header = ({cartQty, signInUserIndex, users, orderToFalse}) => {
     )
 }
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
+    console.log(state)
     return {
         cartQty: state.cart.cart.reduce((acc, i) => {
             acc += i.orderedQty
             return acc
         }, 0),
         signInUserIndex: state.auth.signInUserIndex,
-        users: state.auth.users
+        users: state.auth.users,
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
     }
 }
 

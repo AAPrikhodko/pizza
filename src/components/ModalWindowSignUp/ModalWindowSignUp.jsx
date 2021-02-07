@@ -1,22 +1,28 @@
 import {Modal} from "react-bootstrap";
-import React from "react";
+import React, {useEffect} from "react";
 import {Formik} from "formik"
 import * as yup from 'yup'
 import {connect} from "react-redux";
 import "./ModalWindowSignUp.css"
+import {handleSignUp, setAuthErrToFalse} from "../../redux/authReducer";
 
 
-const ModalWindowSignUp = ({show, handleClose}) => {
+const ModalWindowSignUp = ({show, handleClose, handleSignUp, auth, authErr, setAuthErrToFalse}) => {
 
 
+    const handleBack = () => {
+        setAuthErrToFalse()
+        handleClose()
+    }
     const validationSchema = yup.object().shape({
         email: yup.string()
             .email("Not valid")
             .max(30, "E-mail must be less than 30 symbols")
             .required("Required"),
         password: yup.string()
-            .required("Required"),
-        phone: yup.string()
+            .required("Required")
+            .min(6, "Password must be min 6 symbols"),
+        name: yup.string()
             .required("Required"),
     });
 
@@ -35,13 +41,14 @@ const ModalWindowSignUp = ({show, handleClose}) => {
                 password: "",
                 name: "",
                 street: "",
-                house:"",
-                building:"",
-                flat:"",
+                phone: "",
 
             }}
                     validationSchema={validationSchema}
-             /*       onSubmit={alert('Submitted')}*/
+                    onSubmit={(values) => {
+                        handleSignUp(values)
+                    }
+                    }
             >
                 {({
                       values,
@@ -51,84 +58,87 @@ const ModalWindowSignUp = ({show, handleClose}) => {
                       handleBlur,
                       handleSubmit
                   }) => (
-                        <div className="container wrapper-modal">
-                            <div className="row row-header-modal my-4">
-                                <div className="col text-center">Sign up</div>
+                    <div className="container wrapper-modal">
+                        <div className="row row-header-modal my-4">
+                            <div className="col text-center">Sign up</div>
+                        </div>
+                        <div className="row text-center">
+                            <p className="col text-about-input">Create new account</p>
+                        </div>
+                        <div className="row row-body-modal-sign-up text-center">
+                            <div className="col-4 ">
+                                <label htmlFor="email" className="form-label label-sign-text">E-mail</label>
+                                <input id="email" type="email" className="form-control"
+                                       onChange={handleChange} onBlur={handleBlur} value={values.email}/>
                             </div>
-                            <div className="row text-center">
-                                <p className="col text-about-input">Create new account</p>
+                            <div className="col-4 ">
+                                <label htmlFor="password" className="form-label label-sign-text">Password</label>
+                                <input id="password" type="password" className="form-control "
+                                       onChange={handleChange} onBlur={handleBlur} value={values.password}/>
                             </div>
-                            <div className="row row-body-modal-sign-up text-center">
-                                <div className="col-4 ">
-                                    <label htmlFor="email" className="form-label label-sign-text">E-mail</label>
-                                    <input id="email" type="email" className="form-control"
-                                           onChange={handleChange} onBlur={handleBlur} value={values.email}/>
-                                </div>
-                                <div className="col-4 ">
-                                    <label htmlFor="password" className="form-label label-sign-text">Password</label>
-                                    <input id="password" type="password" className="form-control "
-                                           onChange={handleChange} onBlur={handleBlur} value={values.password}/>
-                                </div>
-                                <div className="col-4 ">
-                                    <label htmlFor="name" className="form-label label-sign-text">Name</label>
-                                    <input id="name" type="text" className="form-control "
-                                           onChange={handleChange} onBlur={handleBlur} value={values.name}/>
-                                </div>
-                                <div className="col-4 ">
-                                    {touched.email && errors.email && <div className='checkout_errMessage'> {errors.email}</div>}
-                                </div>
-                                <div className="col-4 ">
-                                    {touched.password && errors.password && <div className='checkout_errMessage'> {errors.password}</div>}
-                                </div>
-                                <div className="col-4 ">
-                                    {touched.phone && errors.phone && <div className='checkout_errMessage'> {errors.phone}</div>}
-                                </div>
+                            <div className="col-4 ">
+                                <label htmlFor="name" className="form-label label-sign-text">Name</label>
+                                <input id="name" type="text" className="form-control "
+                                       onChange={handleChange} onBlur={handleBlur} value={values.name}/>
                             </div>
-                            <div className="row text-center">
-                                <p className="col text-about-input text-left ml-3">Delivery Address:</p>
+                            <div className="col-4 ">
+                                {touched.email && errors.email &&
+                                <div className='checkout_errMessage'> {errors.email}</div>}
                             </div>
-                            <div className="row row-body-modal-sign-up text-center">
-                                <div className="col-12 ">
-                                    <label htmlFor="email" className="form-label label-sign-text">Street</label>
-                                    <input id="street" type="text" className="form-control"
-                                           onChange={handleChange} onBlur={handleBlur} value={values.street}/>
-                                </div>
-                                <div className="col-4 ">
-                                    <label htmlFor="password" className="form-label label-sign-text mt-1">House</label>
-                                    <input id="password" type="password" className="form-control "
-                                           onChange={handleChange} onBlur={handleBlur} value={values.password}/>
-                                </div>
-                                <div className="col-4 ">
-                                    <label htmlFor="phone" className="form-label label-sign-text mt-1">Building</label>
-                                    <input id="phone" type="text" className="form-control "
-                                           onChange={handleChange} onBlur={handleBlur} value={values.phone}/>
-                                </div>
-                                <div className="col-4 ">
-                                    <label htmlFor="phone" className="form-label label-sign-text mt-1">Flat</label>
-                                    <input id="phone" type="text" className="form-control "
-                                           onChange={handleChange} onBlur={handleBlur} value={values.phone}/>
-                                </div>
+                            <div className="col-4 ">
+                                {touched.password && errors.password &&
+                                <div className='checkout_errMessage'> {errors.password}</div>}
                             </div>
-
-                            <div className="row row-footer-modal my-4">
-                                <div className="col my-1">
-                                    <button className="btn btn-cart" onClick={handleClose}>
-                                        <i className="fas fa-long-arrow-alt-left"/> SIGN IN
-                                    </button>
-                                </div>
-                                <div className="col my-1">
-                                    <button className="btn btn-cart" type="submit">
-                                        CREATE <i className="fas fa-long-arrow-alt-right"/></button>
-                                </div>
+                            <div className="col-4 ">
+                                {touched.name && errors.name &&
+                                <div className='checkout_errMessage'> {errors.name}</div>}
                             </div>
                         </div>
 
-                    )}
+                        <div className="row row-body-modal-sign-up text-center">
+                            <div className="col-4 ">
+                                <label htmlFor="phone" className="form-label label-sign-text ">Phone</label>
+                                <input id="phone" type="text" className="form-control "
+                                       onChange={handleChange} onBlur={handleBlur} value={values.phone}/>
+                            </div>
+                            <div className="col-8 ">
+                                <label htmlFor="street" className="form-label label-sign-text">Delivery address</label>
+                                <input id="street" type="text" className="form-control"
+                                       onChange={handleChange} onBlur={handleBlur} value={values.street}/>
+                            </div>
+                            {authErr && <div className="col-12 mx-auto">
+                                <div className='checkout_errMessage'> {authErr}</div>
+                            </div>}
+                        </div>
 
-                    </Formik>
+                        <div className="row row-footer-modal my-4">
+                            <div className="col my-1">
+                                <button className="btn btn-cart" onClick={handleBack}>
+                                    <i className="fas fa-times"/> CLOSE
+                                </button>
+                            </div>
+                            <div className="col my-1">
+                                <button className="btn btn-cart" type="submit" onClick={handleSubmit}>
+                                    CREATE <i className="fas fa-long-arrow-alt-right"/></button>
+                            </div>
+                        </div>
+                    </div>
 
+                )}
+
+            </Formik>
+            {(auth.uid && !authErr) && handleClose()}
         </Modal>
     )
 }
 
-export default ModalWindowSignUp
+const MapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
+        authErr: state.auth.authErr
+    }
+}
+
+
+export default connect(MapStateToProps, {handleSignUp,setAuthErrToFalse})(ModalWindowSignUp)

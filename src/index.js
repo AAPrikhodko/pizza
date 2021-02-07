@@ -5,25 +5,26 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import store from "./redux/redux-store"
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import firebase from "firebase"
+import rrfConfig from "../src/config/fbconfig";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyA81Xo_RFKas3gGkd6iSEXkozxHxDwubsk",
-    authDomain: "pizza-44d91.firebaseapp.com",
-    databaseURL: "https://pizza-44d91-default-rtdb.firebaseio.com",
-    projectId: "pizza-44d91",
-    storageBucket: "pizza-44d91.appspot.com",
-    messagingSenderId: "6541    92684689",
-    appId: "1:654192684689:web:6e87299ae6e94b4588d930",
-    measurementId: "G-14X829JHZP"
-};
 
-firebase.initializeApp(firebaseConfig);
+const rrfProps = {
+       firebase,
+       config:  { userProfile: 'users' },
+       dispatch: store.dispatch,
+
+ }
+
+
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
+          <ReactReduxFirebaseProvider {...rrfProps}>
     <App />
+      </ReactReduxFirebaseProvider>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')
