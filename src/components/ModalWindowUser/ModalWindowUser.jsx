@@ -1,10 +1,10 @@
 import {Modal} from "react-bootstrap";
-import React, {useState} from "react";
+import React from "react";
 import {connect} from "react-redux";
 import "./ModalWindowUser.css"
 import {handleSignOut} from "../../redux/authReducer";
 
-const ModalWindowUser = ({show, handleClose, handleSignOut, signInUserIndex, users, profile}) => {
+const ModalWindowUser = ({show, handleClose, handleSignOut, profile}) => {
 
     return (
         <Modal
@@ -48,8 +48,6 @@ const ModalWindowUser = ({show, handleClose, handleSignOut, signInUserIndex, use
 
 const MapStateToProps = (state) => {
     return {
-        signInUserIndex: state.auth.signInUserIndex,
-        users: state.auth.users,
         profile: state.firebase.profile
     }
 }

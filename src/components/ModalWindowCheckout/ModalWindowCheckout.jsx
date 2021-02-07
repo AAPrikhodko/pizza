@@ -1,35 +1,21 @@
 import {Modal} from "react-bootstrap";
-import React, {useState} from "react";
+import React from "react";
 import {Formik} from "formik"
 import * as yup from 'yup'
 import {connect} from "react-redux";
 import "./ModalWindowCheckout.css"
 import {order} from "../../redux/cartReducer";
-import ModalWindowUser from "../ModalWindowUser/ModalWindowUser";
-import ModalWindowOrder from "../ModalWindowOrder/ModalWindowOrder";
-import ModalWindowSignUp from "../ModalWindowSignUp/ModalWindowSignUp";
 
 
-const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose, signInUserIndex, users, order}) => {
 
-    const [showOrderModal, setShowOrderModal] = useState(false)
 
-    const handleCloseOrderModal = () => setShowOrderModal(false)
-    const handleShowOrderModal = () => setShowOrderModal(true)
+const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose, order, auth, profile}) => {
 
     const validationSchema = yup.object().shape({
 
-        name: yup.string()
-            .required("Required"),
         phone: yup.string()
             .required("Required"),
         street: yup.string()
-            .required("Required"),
-        house: yup.string()
-            .required("Required"),
-        building: yup.string()
-            .required("Required"),
-        flat: yup.string()
             .required("Required"),
     });
 
@@ -44,30 +30,23 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
             centered
         >
             <Formik initialValues={
-                signInUserIndex !== null
+                auth.uid
                     ? {
-                        email: users[signInUserIndex].email,
-                        phone: users[signInUserIndex].phone,
-                        name: users[signInUserIndex].name,
-                        street: users[signInUserIndex].street,
-                        house: users[signInUserIndex].house,
-                        building: users[signInUserIndex].building,
-                        flat: users[signInUserIndex].flat,
+                        email: profile.email,
+                        phone: profile.phone,
+                        name: profile.name,
+                        street: profile.street
                     }
                     : {
                         email: "",
                         phone: "",
                         name: "",
-                        street: "",
-                        house: "",
-                        building: "",
-                        flat: "",
+                        street: ""
 
                     }
             }
                     validationSchema={validationSchema}
                        onSubmit={(values) => {
-/*                           handleShowOrderModal()*/
                            order()
                            handleClose()
                        }}
@@ -130,12 +109,9 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
                                 <div className='checkout_errMessage'> {errors.phone}</div>}
                             </div>
                         </div>
-                        <div className="row text-center">
-                            <p className="col text-about-input text-left ml-3">Delivery Address:</p>
-                        </div>
                         <div className="row row-body-modal-sign-up text-center">
                             <div className="col-12 ">
-                                <label htmlFor="email" className="form-label label-sign-text">Street</label>
+                                <label htmlFor="street" className="form-label label-sign-text">Delivery Address:</label>
                                 <input id="street" type="text" className="form-control"
                                        onChange={handleChange} onBlur={handleBlur} value={values.street}/>
                             </div>
@@ -143,34 +119,6 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
                                 {touched.street && errors.street &&
                                 <div className='checkout_errMessage'> {errors.street}</div>}
                             </div>
-                            <div className="col-4 ">
-                                <label htmlFor="house" className="form-label label-sign-text mt-1">House</label>
-                                <input id="house" type="text" className="form-control "
-                                       onChange={handleChange} onBlur={handleBlur} value={values.house}/>
-                            </div>
-                            <div className="col-4 ">
-                                <label htmlFor="building" className="form-label label-sign-text mt-1">Building</label>
-                                <input id="building" type="text" className="form-control "
-                                       onChange={handleChange} onBlur={handleBlur} value={values.building}/>
-                            </div>
-                            <div className="col-4 ">
-                                <label htmlFor="flat" className="form-label label-sign-text mt-1">Flat</label>
-                                <input id="flat" type="text" className="form-control "
-                                       onChange={handleChange} onBlur={handleBlur} value={values.flat}/>
-                            </div>
-                            <div className="col-4 ">
-                                {touched.house && errors.house &&
-                                <div className='checkout_errMessage'> {errors.house}</div>}
-                            </div>
-                            <div className="col-4 ">
-                                {touched.building && errors.building &&
-                                <div className='checkout_errMessage'> {errors.building}</div>}
-                            </div>
-                            <div className="col-4 ">
-                                {touched.flat && errors.flat &&
-                                <div className='checkout_errMessage'> {errors.flat}</div>}
-                            </div>
-
 
                         </div>
 
@@ -189,7 +137,6 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
 
                 )}
             </Formik>
-            <ModalWindowOrder show={showOrderModal} handleClose={handleCloseOrderModal}/>
         </Modal>
     )
 }
@@ -202,8 +149,8 @@ let mapStateToProps = (state) => {
         }, 0),
         subTotal: state.cart.subTotal,
         deliveryCost: state.cart.deliveryCost,
-        signInUserIndex: state.auth.signInUserIndex,
-        users: state.auth.users
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
 
     }
 }

@@ -6,10 +6,10 @@ const ORDERTOFALSE = 'ORDERTOFALSE'
 
 
 let initialState = {
-    cart: [],
-    subTotal: 0,
-    deliveryCost:11.99,
-    isOrdered:false
+    cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
+    subTotal: localStorage.getItem('subTotal') ? parseFloat(localStorage.getItem('subTotal')) : 0,
+    deliveryCost: 11.99,
+    isOrdered: false
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -34,6 +34,8 @@ const cartReducer = (state = initialState, action) => {
             stateCopy.subTotal += tempItem.cost
             stateCopy.proceedBtnPressed = false
             stateCopy.isOrdered = false
+            localStorage.setItem('cart', JSON.stringify(stateCopy.cart))
+            localStorage.setItem('subTotal', stateCopy.subTotal)
             return stateCopy
         }
         case INCR_QTY: {
@@ -41,6 +43,8 @@ const cartReducer = (state = initialState, action) => {
             stateCopy.cart = [...state.cart]
             stateCopy.cart[action.ind].orderedQty++
             stateCopy.subTotal += stateCopy.cart[action.ind].cost
+            localStorage.setItem('cart', JSON.stringify(stateCopy.cart))
+            localStorage.setItem('subTotal', stateCopy.subTotal)
             return stateCopy
 
         }
@@ -52,7 +56,8 @@ const cartReducer = (state = initialState, action) => {
             if (state.cart[action.ind].orderedQty === 1) {
                 stateCopy.cart.splice(action.ind, 1)
             } else stateCopy.cart[action.ind].orderedQty--
-
+            localStorage.setItem('cart', JSON.stringify(stateCopy.cart))
+            localStorage.setItem('subTotal', stateCopy.subTotal)
             return stateCopy
         }
 
@@ -61,6 +66,8 @@ const cartReducer = (state = initialState, action) => {
             stateCopy.cart = []
             stateCopy.subTotal = 0
             stateCopy.isOrdered = true
+            localStorage.setItem('cart', JSON.stringify(stateCopy.cart))
+            localStorage.setItem('subTotal', stateCopy.subTotal)
             return stateCopy
         }
 

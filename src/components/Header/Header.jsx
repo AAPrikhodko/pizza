@@ -1,29 +1,30 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import "./Header.css"
 import logo from "../../images/pizza-logo2.png"
 import ModalWindowCart from "../ModalWindowCart/ModalWindowCart";
 import ModalWindowSignIn from "../ModalWindowSignIn/ModalWindowSignIn";
 import {connect} from "react-redux";
 import ModalWindowUser from "../ModalWindowUser/ModalWindowUser";
-import {orderToFalse} from "../../redux/cartReducer";
+import ModalWindowOrder from "../ModalWindowOrder/ModalWindowOrder";
 
-const Header = ({cartQty, signInUserIndex, users, orderToFalse, auth, profile}) => {
+const Header = ({cartQty, auth, profile, isOrdered}) => {
 
     const [showCartModal, setShowCartModal] = useState(false)
     const [showSignInModal, setShowSignInModal] = useState(false)
     const [showUserModal, setShowUserModal] = useState(false)
+    const [showOrderModal, setShowOrderModal] = useState(false)
 
+    useEffect(()=>{ isOrdered && handleShowOrderModal()}, [isOrdered])
+
+    const handleCloseOrderModal = () => setShowOrderModal(false)
+    const handleShowOrderModal = () => setShowOrderModal(true)
     const handleCloseCartModal = () => setShowCartModal(false)
-    const handleShowCartModal = () => {
-        orderToFalse()
-        setShowCartModal(true)
-    }
+    const handleShowCartModal = () => setShowCartModal(true)
     const handleCloseSignInModal = () => setShowSignInModal(false)
     const handleShowSignInModal = () => setShowSignInModal(true)
     const handleCloseUserModal = () => setShowUserModal(false)
     const handleShowUserModal = () => setShowUserModal(true)
 
-    console.log(auth)
     return (
         <>
             <div className="navbar">
@@ -70,23 +71,21 @@ const Header = ({cartQty, signInUserIndex, users, orderToFalse, auth, profile}) 
             <ModalWindowCart show={showCartModal} handleClose={handleCloseCartModal}/>
             <ModalWindowSignIn show={showSignInModal} handleClose={handleCloseSignInModal}/>
             <ModalWindowUser show={showUserModal} handleClose={handleCloseUserModal}/>
-
+            <ModalWindowOrder show={showOrderModal} handleClose={handleCloseOrderModal}/>
         </>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         cartQty: state.cart.cart.reduce((acc, i) => {
             acc += i.orderedQty
             return acc
         }, 0),
-        signInUserIndex: state.auth.signInUserIndex,
-        users: state.auth.users,
         auth: state.firebase.auth,
-        profile: state.firebase.profile
+        profile: state.firebase.profile,
+        isOrdered: state.cart.isOrdered
     }
 }
 
-export default connect(mapStateToProps, {orderToFalse})(Header)
+export default connect(mapStateToProps )(Header)

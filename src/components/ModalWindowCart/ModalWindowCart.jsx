@@ -9,16 +9,10 @@ const ModalWindowCart = ({show, handleClose, cart, subTotal, deliveryCost, isOrd
 
     const [showCheckoutModal, setShowCheckoutModal] = useState(false)
 
-    /*useEffect(()=>handleClose(),[isOrdered])*/
-
     const handleCloseCheckoutModal = () => setShowCheckoutModal(false)
     const handleShowCheckoutModal = () => setShowCheckoutModal(true)
 
-    if (isOrdered) {
-        handleClose()
-
-
-    }
+    if (isOrdered) { handleClose() }
      return (
         <Modal
             show={show}
@@ -62,7 +56,7 @@ const ModalWindowCart = ({show, handleClose, cart, subTotal, deliveryCost, isOrd
                         </button>
                     </div>
                     <div className="col my-1">
-                        <button className="btn btn-cart" type="submit" onClick={handleShowCheckoutModal}>
+                        <button className="btn btn-cart " type="submit" onClick={handleShowCheckoutModal} disabled={cart.length !==0 ? false : true}>
                             PROCEED <i className="fas fa-long-arrow-alt-right"/></button>
                     </div>
                 </div>

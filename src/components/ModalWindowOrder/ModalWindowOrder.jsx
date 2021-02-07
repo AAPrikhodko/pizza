@@ -1,10 +1,15 @@
 import {Modal} from "react-bootstrap";
 import React, {useState} from "react";
 import "./ModalWindowOrder.css"
+import {orderToFalse} from "../../redux/cartReducer";
+import {connect} from "react-redux";
 
-const ModalWindowOrder = ({show, handleClose}) => {
+const ModalWindowOrder = ({show, handleClose, orderToFalse}) => {
 
-
+    const handleOk = () => {
+        orderToFalse()
+        handleClose()
+    }
     return (
         <Modal
             show={show}
@@ -16,13 +21,16 @@ const ModalWindowOrder = ({show, handleClose}) => {
         >
 
             <div className="container wrapper-modal">
+                <div className="row row-header-modal my-4">
+                    <div className="col text-center">Thank you for your order!</div>
+                </div>
                 <div className="row text-center">
-                    <div className="col-12"> Thank you for your order! We wish you BON APPETITE!</div>
+                    <div className="col-12">We wish you BON APPETITE!</div>
                 </div>
                 <div className="row row-footer-modal my-4">
                     <div className="col my-1">
-                        <button className="btn btn-cart btn-back" onClick={handleClose}>
-                            <i className="fas fa-long-arrow-alt-left"/> OK
+                        <button className="btn btn-cart btn-back" onClick={handleOk}>
+                            <i className="fas fa-check"/> OK
                         </button>
                     </div>
                 </div>
@@ -33,4 +41,4 @@ const ModalWindowOrder = ({show, handleClose}) => {
 }
 
 
-export default ModalWindowOrder
+export default connect(null, {orderToFalse})(ModalWindowOrder)

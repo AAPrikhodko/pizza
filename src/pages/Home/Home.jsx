@@ -4,7 +4,8 @@ import Pizzacard from "../../components/Pizzacard/Pizzacard";
 import {connect} from "react-redux";
 import {getPizzas} from "../../redux/homeReducer";
 
-const Home = ({pizzas, getPizzas}) => {
+
+const Home = ({pizzas, getPizzas, isOrdered}) => {
 
     useEffect(() => getPizzas(), [])
 
@@ -25,4 +26,4 @@ let MapStateToProps = (state) => {
     }
 }
 
-export default connect(MapStateToProps,{getPizzas})(Home)
+export default connect(MapStateToProps, {getPizzas})(Home)
