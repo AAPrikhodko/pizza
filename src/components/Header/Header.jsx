@@ -14,7 +14,9 @@ const Header = ({cartQty, auth, profile, isOrdered}) => {
     const [showUserModal, setShowUserModal] = useState(false)
     const [showOrderModal, setShowOrderModal] = useState(false)
 
-    useEffect(()=>{ isOrdered && handleShowOrderModal()}, [isOrdered])
+    useEffect(() => {
+        isOrdered && handleShowOrderModal()
+    }, [isOrdered])
 
     const handleCloseOrderModal = () => setShowOrderModal(false)
     const handleShowOrderModal = () => setShowOrderModal(true)
@@ -28,28 +30,30 @@ const Header = ({cartQty, auth, profile, isOrdered}) => {
     return (
         <>
             <div className="navbar">
-                <div className="logo"><img src={logo} width="50" height="50" alt=""/></div>
-                <div className="btn btn-icon dropdown" type="button" id="dropdownMenuButton"
-                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i className="fas fa-bars"/>
-                    <div className="dropdown-menu burger-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item linked" href="#">Restaurants</a>
-                        <a className="dropdown-item linked" href="#">Contacts</a>
-                        <a className="dropdown-item linked" href="#">About</a>
-                    </div>
+                <a className="logo" href="/"><img src={logo} width="50" height="50" alt=""/></a>
+
+                <div className="dropdown btn-icon ">
+                    <a href="#" data-toggle="dropdown" className="dropdown"> <i className="fas fa-bars"/> </a>
+                    <ul className="dropdown-menu burger-menu" >
+                        <li><a className="dropdown-item linked" href="/restaurants">Restaurants</a></li>
+                        <li><a className="dropdown-item linked" href="/contacts">Contacts</a></li>
+                        <li><a className="dropdown-item linked" href="/about">About</a></li>
+                    </ul>
+
                 </div>
+
                 <div className="nav-menu">
                     <ul>
-                        <li><a className="linked" href="#">Restaurants</a></li>
-                        <li><a className="linked" href="#">Contacts</a></li>
-                        <li><a className="linked" href="#">About</a></li>
+                        <li><a className="linked" href="/restaurants">Restaurants</a></li>
+                        <li><a className="linked" href="/contacts">Contacts</a></li>
+                        <li><a className="linked" href="/about">About</a></li>
                     </ul>
                 </div>
                 <div className="button-group">
                     <button className="btn btn-cart" onClick={handleShowCartModal}>Cart <span
                         className="badge badge-light">{cartQty === 0 ? '' : cartQty}</span></button>
 
-                    { !auth.uid
+                    {!auth.uid
                         ? <button className="btn btn-sign-in"
                                   onClick={handleShowSignInModal}>Sign in</button>
                         : <button className="btn btn-sign-in"
@@ -88,4 +92,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps )(Header)
+export default connect(mapStateToProps)(Header)

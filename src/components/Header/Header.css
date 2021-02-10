@@ -3,6 +3,7 @@
     margin: 10px 30px;
     opacity: 0.96;
 }
+
 .nav-menu{
     flex:1;
     text-align: left;
@@ -41,6 +42,14 @@
     color: #d0b892;
     font-size: 20px;
 }
+
+.btn-icon a i{
+    color: #d0b892;
+}
+
+.btn-icon a i:hover{
+    color: #e7dfd6;
+}
 .btn-sign-in:hover, .btn-cart:hover{
     background-color: #92806a;
 }
@@ -62,21 +71,23 @@
 
 .burger-menu{
     background-color: #381c14;
+
+
 }
 
 #dropdownMenuButton > i{
     color: #d0b892;
 }
 
+.burger-menu li a:hover{
+    background-color: #381c14;
+    color: #e7dfd6;
+}
+
 .burger-menu a{
     background-color: #381c14;
     color: #d0b892;
     letter-spacing: 1px;
-}
-
-#dropdownMenuButton > div > a{
-    background-color: #381c14;
-    color: #d0b892;
 }
 
 .icon-group{

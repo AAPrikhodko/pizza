@@ -1,0 +1,74 @@
+.container-contacts{font-weight: 500;
+    color: #381c14;
+    background-color: #d0b892;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border-radius: 10px;
+
+    width: 80%;
+    margin: 20px auto;
+}
+
+.row-contacts-header{
+    background-color: #381c14;
+    min-height: 50px;
+    color: #d0b892;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-items: center;
+
+
+}
+
+.row-contacts{
+    text-align: center;
+}
+.text-contacts{
+
+}
+
+.text-contacts-item{
+    padding: 20px 0;
+    text-align: justify;
+}
+
+.my_ul li {
+    list-style-type: none;
+    margin: 10px 0 10px 0;
+    background: url("../../images/checkbox.png") left 10px no-repeat;
+    background-size: 20px 20px;
+}
+.my_ul li div {
+    padding-left: 3rem;
+    text-align: justify;
+}
+
+.contact_ul {
+    list-style-type: none;
+    padding-right: 3px;
+    overflow: hidden;
+    align-self: center;
+}
+
+.contact_ul li {
+    margin: 10px 5px;
+}
+.contacts-info-wrapper img {
+    width: 50%;
+    border-radius:50%;
+}
+
+.contact_ul li a {
+    color: #381c14;
+    text-decoration: none;
+}
+.contact_ul li a:hover {
+    color: #decaca;
+    text-decoration: none;
+}
+.contacts-info-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

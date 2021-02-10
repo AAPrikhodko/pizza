@@ -1,0 +1,14 @@
+.container-restaurants{
+    color: #381c14;
+    background-color: #d0b892;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border-radius: 10px;
+
+    width: 80%;
+    margin: 20px auto;
+}
+
+.text-under-constr{
+       padding: 100px 10px;
+}
