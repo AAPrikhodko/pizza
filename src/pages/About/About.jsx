@@ -11,39 +11,39 @@ const About = () => {
 
         <div className="container container-about">
             <div className="row row-about-header">
-                <div className="col text-center">About</div>
+                <div className="col text-center text-header">About</div>
             </div>
             <h3 className="col-12 text-about mb-3"> Pizza Shop Online </h3>
             <div className="row row-about ">
 
 
-                <div className="col-md-4 col-xs-12"><a href="https://reactjs.org/" target="_blank"><img src={reactPhoto}
+                <div className="col-md-4 col-xs-12 react-img"><a href="https://reactjs.org/" target="_blank"><img src={reactPhoto}
                                                                                            width="35%"/> </a></div>
-                <div className="col-md-8 col-xs-12 text-about-item my-auto"> This Single Page Application (SPA) is based on ReactJS
+                <div className="col-md-8 col-xs-12 text-about-item my-auto react-descr"> This Single Page Application (SPA) is based on ReactJS
                     library using React Hooks. It provides high speed, simplicity and scalability
                 </div>
 
-                <div className="col-md-8 col-xs-12 text-about-item my-auto"> Used Redux as a state managment. It gives convenient and
+                <div className="col-md-8 col-xs-12 text-about-item my-auto redux-descr"> Used Redux as a state managment. It gives convenient and
                     quick access to data from any place in application
                 </div>
-                <div className="col-md-4 col-xs-12"><a href="https://redux.js.org/" target="_blank"><img src={reduxPhoto} width="40%"
+                <div className="col-md-4 col-xs-12 redux-img"><a href="https://redux.js.org/" target="_blank"><img src={reduxPhoto} width="40%"
                                                                                             alt=""/> </a></div>
-                <div className="col-md-4 col-xs-12"><a href="https://getbootstrap.com/" target="_blank"><img src={bootstrapPhoto}
+                <div className="col-md-4 col-xs-12 bootstrap-img"><a href="https://getbootstrap.com/" target="_blank"><img src={bootstrapPhoto}
                                                                                                 width="80%" alt=""/>
                 </a></div>
-                <div className="col-md-8 col-xs-12 text-about-item my-auto"> Bootstrap framework is included to the application. It
+                <div className="col-md-8 col-xs-12 text-about-item my-auto bootstrap-descr"> Bootstrap framework is included to the application. It
                     makes the disign responsitive and morden
                 </div>
-                <div className="col-md-8 col-xs-12 text-about-item my-auto"> All the information is saved in Google Realtime
+                <div className="col-md-8 col-xs-12 text-about-item my-auto firebase-descr"> All the information is saved in Google Realtime
                     database. The application uses Firebase Authentication by Firebase in order to provide access to
                     your personal account
                 </div>
-                <div className="col-md-4 col-xs-12"><a href="https://firebase.google.com/" target="_blank"><img src={firebasePhoto}
+                <div className="col-md-4 col-xs-12 firebase-img"><a href="https://firebase.google.com/" target="_blank"><img src={firebasePhoto}
                                                                                                    width="80%" alt=""/></a>
                 </div>
 
-                <h3 className="col-12 text-about mb-3 "> App's features </h3>
-                <div className="col-12">
+                <h3 className="col-12 text-about mb-3 text-about-head"> App's features </h3>
+                <div className="col-12 text-features">
                     <ul className="my_ul">
                         <li>
                             <div>In this App you may create your own account. If you signed in, thy system will
@@ -63,7 +63,7 @@ const About = () => {
                         </li>
                     </ul>
                 </div>
-                <h3 className="col-12 text-about my-4 "> Thank you for using our app ! </h3>
+                <h3 className="col-12 text-about my-4 text-about-ty"> Thank you for using our app ! </h3>
             </div>
         </div>
     )

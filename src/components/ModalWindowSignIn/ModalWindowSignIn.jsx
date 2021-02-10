@@ -92,7 +92,7 @@ const ModalWindowSignIn = ({show, handleClose, handleSignIn, auth, authErr, setA
                             <div className="row row-footer-modal my-4">
                                 <div className="col my-1">
                                     <button className="btn btn-cart " onClick={handleBack}>
-                                        <i className="fas fa-long-arrow-alt-left"/> BACK
+                                        <i className="fas fa-long-arrow-alt-left"/> GET BACK
                                     </button>
                                 </div>
                                 <div className="col my-1">

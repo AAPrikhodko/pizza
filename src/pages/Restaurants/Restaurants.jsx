@@ -7,7 +7,7 @@ const Restaurants = () => {
     return (
         <div className="container container-restaurants">
             <div className="row row-header-modal my-4">
-                <div className="col text-center">Restaurants</div>
+                <div className="col text-center text-header">Restaurants</div>
             </div>
             <div className="row ">
                 <div className="col-12 text-under-constr text-center">

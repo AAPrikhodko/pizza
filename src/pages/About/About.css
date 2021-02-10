@@ -51,3 +51,19 @@
     padding-left: 3rem;
     text-align: justify;
 }
+
+@media (max-width: 767px) {
+    .react-img{ order:0}
+    .react-descr{ order:1}
+    .redux-img{ order:2}
+    .redux-descr{ order:3}
+    .bootstrap-img{ order:4}
+    .bootstrap-descr{ order:5}
+    .firebase-img{ order:6}
+    .firebase-descr{ order:7}
+    .text-about-head { order:8}
+    .text-features { order:9}
+    .text-about-ty { order:10}
+    .container-about {font-size: 14px}
+
+}

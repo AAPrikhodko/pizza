@@ -1,4 +1,5 @@
-.container-contacts{font-weight: 500;
+.container-contacts{
+    font-weight: 500;
     color: #381c14;
     background-color: #d0b892;
     font-size: 20px;
@@ -24,8 +25,8 @@
 .row-contacts{
     text-align: center;
 }
-.text-contacts{
-
+.text-header{
+position: static;
 }
 
 .text-contacts-item{
