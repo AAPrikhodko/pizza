@@ -5,11 +5,12 @@ import * as yup from 'yup'
 import {connect} from "react-redux";
 import "./ModalWindowCheckout.css"
 import {order} from "../../redux/cartReducer";
+import {saveOrderToUser} from "../../redux/authReducer";
 
 
 
 
-const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose, order, auth, profile}) => {
+const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose, order, auth, profile, saveOrderToUser}) => {
 
     const validationSchema = yup.object().shape({
 
@@ -32,7 +33,7 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
             <Formik initialValues={
                 auth.uid
                     ? {
-                        email: profile.email,
+                        email: auth.email,
                         phone: profile.phone,
                         name: profile.name,
                         street: profile.street
@@ -47,9 +48,11 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
             }
                     validationSchema={validationSchema}
                        onSubmit={(values) => {
-                           order()
-                           handleClose()
-                       }}
+                           saveOrderToUser(values)
+                           order();
+                           handleClose();
+                       }
+                       }
             >
                 {({
                       values,
@@ -155,4 +158,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {order})(ModalWindowCheckout)
+export default connect(mapStateToProps, {order, saveOrderToUser})(ModalWindowCheckout)

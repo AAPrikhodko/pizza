@@ -11,10 +11,10 @@ const Footer = () => {
         <div className="container footer-container">
             <div className="row footer-row-1">
                 <div className="col col-footer-3">
-                    <h6>PRODUCTS</h6>
+                    <h6>APPS INC</h6>
                     <ul className="list-unstyled">
-                        <li><a className="linked" href={URL_USERS} target="_blank">User's Manager</a></li>
-                        <li><a className="linked" href={URL_NETWORK} target="_blank">Developer Network</a></li>
+                        <li >Moscow,</li>
+                        <li>Chukovskogo 3</li>
                     </ul>
                 </div>
 

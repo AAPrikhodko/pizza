@@ -1,0 +1,37 @@
+.cardhystory-pizza{
+    border-right: 2px dashed #d0b892;
+}
+
+
+
+
+.row-cardhystory-item {
+    align-items: center;
+    letter-spacing: 1px;
+
+
+}
+
+.btn-cart {
+    text-transform: uppercase;
+    margin: 5px 10px;
+    background-color: #d0b892;
+    color: #381c14;
+}
+
+.fa-dollar-sign-historycard, .price-historycard{
+    display: inline-block;
+    font-weight: 700;
+}
+
+@media (max-width: 750px) {
+    .row-cardhystory-item {
+        flex-direction: column;
+    }
+    .cardhystory-date, .cardhystory-pizza, .cardhystory-price-with-sign {
+        max-width: 100%;
+    }
+    .cardhystory-pizza{
+        text-align: center!important;
+    }
+}

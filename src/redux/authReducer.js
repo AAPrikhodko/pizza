@@ -59,7 +59,6 @@ export const signOut = () => ({type: SIGNOUT})
 export const setAuthErrToFalse = () => ({type: SETAUTHERRTOFALSE})
 
 
-
 // ThunkCreators
 export const handleSignIn = (email, password) => (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase()
@@ -84,7 +83,24 @@ export const handleSignUp = (newUser) => (dispatch, getState, {getFirebase}) => 
                 phone: newUser.phone
             })
         }).then(() => dispatch(signUp()))
-        .catch((err)=>dispatch(signUpErr(err)))
+        .catch((err) => dispatch(signUpErr(err)))
+}
+
+export const saveOrderToUser = (values) => {
+    return (dispatch, getState, {getFirebase}) => {
+        let firebase = getFirebase()
+        let currentDate = new Date().toLocaleDateString()
+        let currentSumTotal = (getState().cart.subTotal+getState().cart.deliveryCost).toFixed(2)
+        let currentCart = getState().cart.cart
+        let path = firebase.database().ref('users' + "/" + getState().firebase.auth.uid + "/orders")
+        path.push({
+                date: currentDate,
+                sumTotal: currentSumTotal,
+                street: values.street,
+                orderdetailes: currentCart
+            }
+        )
+    }
 }
 
 

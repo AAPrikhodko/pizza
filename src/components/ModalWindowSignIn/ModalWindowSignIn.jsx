@@ -21,7 +21,10 @@ const ModalWindowSignIn = ({show, handleClose, handleSignIn, auth, authErr, setA
         setShowSignUpModal(false)
         handleClose()
     }
-    const handleShowSignUpModal = () => setShowSignUpModal(true)
+    const handleShowSignUpModal = () => {
+        setAuthErrToFalse()
+        setShowSignUpModal(true)
+    }
 
     const validationSchema = yup.object().shape({
         email: yup.string()

@@ -3,8 +3,10 @@ import React from "react";
 import {connect} from "react-redux";
 import "./ModalWindowUser.css"
 import {handleSignOut} from "../../redux/authReducer";
+import OrderItemCard from "../OrderItemCard/OrderItemCard";
 
-const ModalWindowUser = ({show, handleClose, handleSignOut, profile}) => {
+const ModalWindowUser = ({show, handleClose, handleSignOut, profile, orders}) => {
+
 
     return (
         <Modal
@@ -21,10 +23,28 @@ const ModalWindowUser = ({show, handleClose, handleSignOut, profile}) => {
                     <div className="col text-center">Welcome {profile.name}</div>
                 </div>
 
-                <div className="row text-center">
-                    <div className="col-12"> There will be your orders history soon</div>
-                </div>
 
+                {(orders !== undefined)
+                    ?
+                    <>
+                        <div className="row text-center">
+                            <div className="col-12"> ORDERS HISTORY</div>
+                        </div>
+
+                        <div className="row text-center">
+                            <div className="col-11 mx-auto"> {Object.keys(orders).map((uid) =>
+                                <OrderItemCard date={orders[uid].date} sumTotal={orders[uid].sumTotal} orderdetailes = {orders[uid].orderdetailes}/>)}
+                            </div>
+
+                        </div>
+                    </>
+                    :
+                    <div className="row text-center">
+                        <div className="col-12"> YOU HAVE NO ORDERS</div>
+                    </div>
+                }
+
+                {console.log(orders)}
 
                 <div className="row row-footer-modal my-4">
                     <div className="col my-1">
@@ -48,7 +68,8 @@ const ModalWindowUser = ({show, handleClose, handleSignOut, profile}) => {
 
 const MapStateToProps = (state) => {
     return {
-        profile: state.firebase.profile
+        profile: state.firebase.profile,
+        orders: state.firebase.profile.orders
     }
 }
 

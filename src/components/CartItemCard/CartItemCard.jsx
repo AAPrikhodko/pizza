@@ -9,7 +9,7 @@ const CartItemCard = ({pizza,increaseQty, decreaseQty, ind}) => {
             <div className="row row-card-item">
                 <div className="col-4 col-card-item-img"> <img src={pizza.image}/> </div>
                 <div className="col-5 card-body">
-                    <h5 className="card-title text-left">{pizza.name}</h5>
+                    <h5 className="card-title text-center">{pizza.name}</h5>
                     <p className="card-text text-left text-muted">{pizza.desc}</p>
                 </div>
                 <div className="col-3 col-qty">

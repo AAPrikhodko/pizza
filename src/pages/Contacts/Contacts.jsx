@@ -10,7 +10,7 @@ const Contacts = () => {
             <div className="row row-contacts-header">
                 <div className="col text-center text-header">CONTACTS</div>
             </div>
-            <h3 className="col-12 text-contacts my-3 text-center"> Welcome to Pizza Shop Online application ! </h3>
+            <h3 className="col-12 text-contacts my-3 text-center"> WELCOME TO PIZZA SHOP! </h3>
             <div className="row row-contacts ">
                 <div className="contacts-info-wrapper">
                     <img src={ava} width="50%"/>

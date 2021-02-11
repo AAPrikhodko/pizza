@@ -25,7 +25,8 @@ const ModalWindowOrder = ({show, handleClose, orderToFalse}) => {
                     <div className="col text-center">Thank you for your order!</div>
                 </div>
                 <div className="row text-center">
-                    <div className="col-12">We wish you BON APPETITE!</div>
+                    <div className="col-12">We will deliver your order in 1 hour.</div>
+                    <div className="col-12">BON APPETITE!</div>
                 </div>
                 <div className="row row-footer-modal my-4">
                     <div className="col my-1">
