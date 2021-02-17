@@ -17,6 +17,8 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
             .required("Required"),
         street: yup.string()
             .required("Required"),
+        email: yup.string()
+            .email("Not valid")
     });
 
 
@@ -101,12 +103,12 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
                                        onChange={handleChange} onBlur={handleBlur} value={values.phone}/>
                             </div>
                             <div className="col-4 ">
-                                {touched.email && errors.email &&
-                                <div className='checkout_errMessage'> {errors.email}</div>}
+                                {touched.name && errors.name &&
+                                <div className='checkout_errMessage'> {errors.name}</div>}
                             </div>
                             <div className="col-4 ">
-                                {touched.password && errors.password &&
-                                <div className='checkout_errMessage'> {errors.password}</div>}
+                                {touched.email && errors.email &&
+                                <div className='checkout_errMessage'> {errors.email}</div>}
                             </div>
                             <div className="col-4 ">
                                 {touched.phone && errors.phone &&
