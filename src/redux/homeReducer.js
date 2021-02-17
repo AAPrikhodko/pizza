@@ -7,7 +7,7 @@ const EUR_TO_USD = 1.23
 
 let initialState = {
     pizzas: [],
-    currency: 'USD'
+    currency: localStorage.getItem('currency') ? localStorage.getItem('currency') : 'USD'
 }
 
 const homeReducer = (state = initialState, action) => {
@@ -18,6 +18,7 @@ const homeReducer = (state = initialState, action) => {
         case SWITCH_CURR: {
             let stateCopy = {...state}
             stateCopy.currency = action.currency
+            localStorage.setItem('currency', action.currency)
             return stateCopy
         }
         default:
