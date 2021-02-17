@@ -41,3 +41,41 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media (max-width: 991px) {
+    .pizza-description{
+        min-height: 110px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .price-area {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+    .pizza-description{
+        min-height: 153px;
+    }
+
+    .price, .fa-dollar-sign-pizzacard{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .price-area {
+display: inline-block;
+    }
+    .pizza-description{
+        min-height: 50px;
+    }
+
+    .price, .fa-dollar-sign-pizzacard{
+        font-size: 20px;
+    }
+}

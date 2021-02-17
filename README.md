@@ -1,3 +1,13 @@
+Some comment about the pizza App:
+
+- Here you can find [Pizza App](https://best-pizza-in-the-world.netlify.app)
+- In this App you may create your own account. If you signed in, thy system will automatically fill the necessary information wlile ordering.
+- You may increase or decrease the quantity of pizza at the cart
+- The cart doesn't lose the information in case of refreshing the page
+- If you signed in you may find your order's history by clicking on the button with your name
+- You may choose the currency: EUR or USD
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

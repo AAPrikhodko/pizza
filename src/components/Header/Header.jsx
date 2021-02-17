@@ -53,8 +53,8 @@ const Header = ({cartQty, auth, profile, isOrdered, currency, setCurrencyTo}) =>
                 </div>
                 <div className="button-group">
                         <select value={currency} onChange={handleCurrencyChange} className="btn menu btn-cart">
-                            <option selected={currency==="USD" ? true : false} value='USD'>USD</option>
-                            <option selected={currency==="USD" ? true : false} value='EUR'>EUR</option>
+                            <option className="option-currency" selected={currency==="USD" ? true : false} value='USD'>USD</option>
+                            <option className="option-currency" selected={currency==="USD" ? true : false} value='EUR'>EUR</option>
                         </select>
                     <button className="btn btn-cart" onClick={handleShowCartModal}>Cart <span
                         className="badge badge-light">{cartQty === 0 ? '' : cartQty}</span></button>
