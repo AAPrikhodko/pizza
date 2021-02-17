@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     background-color: #381c14;
     margin: 10px 30px;
     opacity: 0.96;
@@ -6,38 +6,43 @@
 
 }
 
-.nav-menu{
-    flex:1;
+.nav-menu {
+    flex: 1;
     text-align: left;
     align-items: center;
 }
-.nav-menu ul{
+
+.nav-menu ul {
     display: block;
     list-style-type: none;
     margin-top: auto;
     margin-bottom: auto;
 }
-.nav-menu ul li{
+
+.nav-menu ul li {
     display: inline-block;
     margin: 10px;
 }
-.nav-menu ul li a{
+
+.nav-menu ul li a {
     text-decoration: none;
     color: #d0b892;
     letter-spacing: 1px;
 }
-.btn-cart{
-    text-transform: uppercase;
-    margin: 5px 10px;
-    background-color: #d0b892;
-}
-.btn-sign-in{
+
+.btn-cart {
     text-transform: uppercase;
     margin: 5px 10px;
     background-color: #d0b892;
 }
 
-.btn-sign-in:hover, .btn-cart:hover{
+.btn-sign-in {
+    text-transform: uppercase;
+    margin: 5px 10px;
+    background-color: #d0b892;
+}
+
+.btn-sign-in:hover, .btn-cart:hover {
     background-color: #92806a;
 }
 
@@ -48,21 +53,21 @@
     font-size: 20px;
 }
 
-.btn-icon a i{
+.btn-icon a i {
     color: #d0b892;
 }
 
-.btn-icon a i:hover{
+.btn-icon a i:hover {
     color: #e7dfd6;
 }
 
 
-.icon-cart-with-counter{
+.icon-cart-with-counter {
     display: inline-block;
     position: relative;
 }
 
-.icon-cart-with-counter span{
+.icon-cart-with-counter span {
     color: #d0b892;
     font-size: 14px;
     font-weight: 900;
@@ -71,36 +76,36 @@
     right: 3px;
 }
 
-.burger-menu{
+.burger-menu {
     background-color: #381c14;
 }
 
 
-.burger-menu a{
+.burger-menu a {
     background-color: #381c14;
     color: #d0b892;
     letter-spacing: 1px;
 }
-.burger-menu li a:hover{
+
+.burger-menu li a:hover {
     background-color: #381c14;
     color: #e7dfd6;
 }
 
-.icon-group{
+.icon-group {
     display: none;
 }
 
-.icon-group i{
+.icon-group i {
     color: #d0b892;
     cursor: pointer;
     margin: 15px;
     font-size: 20px;
 }
 
-.icon-group i:hover{
+.icon-group i:hover {
     color: #e7dfd6;
 }
-
 
 
 @media (max-width: 900px) {
@@ -120,12 +125,44 @@
     .button-group {
         display: none;
     }
-    .icon-group{
+
+    .icon-group {
         display: inline-block;
     }
 }
 
-#root > div > div.header > div > div.dropdown.btn-icon.show > ul{
+#root > div > div.header > div > div.dropdown.btn-icon.show > ul {
     background-color: #381c14;
 
 }
+
+.select-currancy {
+    margin-right: 7px;
+    border: none;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #381c14;
+    color: #d0b892;
+
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+}
+
+.select-currancy:hover {
+    color: #e7dfd6;
+    cursor: pointer;
+}
+
+.select-currancy:focus {
+    outline: none;
+}
+
+/* For IE10 */
+.select-currancy::-ms-expand {
+    border: none;
+    display: none;
+
+}
+

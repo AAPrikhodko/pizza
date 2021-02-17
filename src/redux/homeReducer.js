@@ -1,15 +1,24 @@
 import firebase from "firebase";
 
 const SET_PIZZAS = "SET_PIZZAS"
+const SWITCH_CURR = 'SWITCH_CURR'
+const EUR_TO_USD = 1.23
+
 
 let initialState = {
-        pizzas: []
+    pizzas: [],
+    currency: 'USD'
 }
 
 const homeReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PIZZAS: {
             return {...state, pizzas: [...action.pizzas]}
+        }
+        case SWITCH_CURR: {
+            let stateCopy = {...state}
+            stateCopy.currency = action.currency
+            return stateCopy
         }
         default:
             return state
@@ -18,6 +27,7 @@ const homeReducer = (state = initialState, action) => {
 
 // ActionCreators
 export const setPizzas = (pizzas) => ({type: SET_PIZZAS, pizzas})
+export const setCurrencyTo = (currency) => ({type: SWITCH_CURR, currency})
 
 // ThunkCreators
 export const getPizzas = () => {
@@ -35,7 +45,8 @@ export const getPizzas = () => {
                 dispatch(setPizzas(pizzas))
             }
         }, function (error) {
-            console.log("Error: " + error.code)})
+            console.log("Error: " + error.code)
+        })
     }
 }
 

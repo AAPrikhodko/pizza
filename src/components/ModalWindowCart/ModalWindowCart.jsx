@@ -4,8 +4,9 @@ import {connect} from "react-redux";
 import "./ModalWindowCart.css"
 import CartItemCard from "../CartItemCard/CartItemCard";
 import ModalWindowCheckout from "../ModalWindowCheckout/ModalWindowCheckout";
+import showPriceInCurrency from "../../utils/showPriceInCurrency"
 
-const ModalWindowCart = ({show, handleClose, cart, subTotal, deliveryCost, isOrdered}) => {
+const ModalWindowCart = ({show, handleClose, cart, subTotal, deliveryCost, isOrdered, currency}) => {
 
     const [showCheckoutModal, setShowCheckoutModal] = useState(false)
 
@@ -38,12 +39,18 @@ const ModalWindowCart = ({show, handleClose, cart, subTotal, deliveryCost, isOrd
                 }
                 {cart.length !==0 && <div className="row row-summary-modal text-center">
                     <div className="col-11 text-right">
-                        <p className="summary-text">Subtotal: <i
-                            className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>{subTotal.toFixed(2)}</p>
-                        <p className="summary-text">Delivery: <i
-                            className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>{deliveryCost}</p>
-                        <p className="summary-text">Total: <i
-                            className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>{(subTotal + deliveryCost).toFixed(2)}
+                        <p className="summary-text">Subtotal: { (currency === 'USD')
+                                ? <i className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>
+                                : <i className="fas fa-euro-sign fa-dollar-sign-summary-text"/>}
+                            {showPriceInCurrency(subTotal.toFixed(2))}</p>
+                        <p className="summary-text">Delivery: { (currency === 'USD')
+                            ? <i className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>
+                            : <i className="fas fa-euro-sign fa-dollar-sign-summary-text"/>}
+                            {showPriceInCurrency(deliveryCost)}</p>
+                        <p className="summary-text">Total: { (currency === 'USD')
+                            ? <i className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>
+                            : <i className="fas fa-euro-sign fa-dollar-sign-summary-text"/>}
+                            {showPriceInCurrency((subTotal + deliveryCost).toFixed(2))}
                         </p>
                     </div>
                 </div>}
@@ -71,7 +78,8 @@ const MapStateToProps = (state) => {
         cart: state.cart.cart,
         subTotal: state.cart.subTotal,
         deliveryCost: state.cart.deliveryCost,
-        isOrdered: state.cart.isOrdered
+        isOrdered: state.cart.isOrdered,
+        currency: state.home.currency
     }
 }
 

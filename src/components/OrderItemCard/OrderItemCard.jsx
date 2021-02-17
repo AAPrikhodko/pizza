@@ -1,9 +1,10 @@
 import React from "react";
 import "./OrderItemCard.css"
 import {connect} from "react-redux";
+import showPriceInCurrency from "../../utils/showPriceInCurrency"
 
 
-const OrderItemCard = ({date, sumTotal, orderdetailes}) => {
+const OrderItemCard = ({date, sumTotal, orderdetailes, currency}) => {
     return (
         <div className="card wrapper-card-item-cart my-3">
             <div className="row row-cardhystory-item">
@@ -18,19 +19,21 @@ const OrderItemCard = ({date, sumTotal, orderdetailes}) => {
                 </div>
 
                 <div className="col-3 cardhystory-price-with-sign">
-                    <i className="fas fa-dollar-sign fa-dollar-sign-historycard"/>
-                    <p className="price-historycard"> {sumTotal} </p>
+                    {(currency === 'USD')
+                        ? <i className="fas fa-dollar-sign fa-dollar-sign-historycard"/>
+                        : <i className="fas fa-euro-sign fa-dollar-sign-historycard"/>}
+                    <p className="price-historycard"> {showPriceInCurrency(sumTotal)} </p>
                 </div>
             </div>
         </div>
     )
 }
 
-/*const MapStateToProps = (state) => {
+const MapStateToProps = (state) => {
     return {
-        cart: state.cart.cart,
+        currency: state.home.currency
     }
-}*/
+}
 
 
-export default OrderItemCard
+export default connect(MapStateToProps)(OrderItemCard)

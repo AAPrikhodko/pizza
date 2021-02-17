@@ -13,7 +13,7 @@ const Contacts = () => {
             <h3 className="col-12 text-contacts my-3 text-center"> WELCOME TO PIZZA SHOP! </h3>
             <div className="row row-contacts ">
                 <div className="contacts-info-wrapper">
-                    <img src={ava} width="50%"/>
+                    <img src={ava} />
                     <ul className="contact_ul text-right">
                         <li><p className="headerName pt-3 pr-4 text-uppercase text-rirgt">Andrey Prikhodko</p></li>
                         <li><p className="text-right">frontend web developer</p></li>

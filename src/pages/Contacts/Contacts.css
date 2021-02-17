@@ -23,7 +23,7 @@
 }
 
 .row-contacts{
-    text-align: center;
+
 }
 .text-header{
 position: static;
@@ -70,6 +70,7 @@ position: static;
 }
 .contacts-info-wrapper{
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center;
 }

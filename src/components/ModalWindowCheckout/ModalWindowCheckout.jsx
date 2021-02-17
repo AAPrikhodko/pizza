@@ -6,11 +6,10 @@ import {connect} from "react-redux";
 import "./ModalWindowCheckout.css"
 import {order} from "../../redux/cartReducer";
 import {saveOrderToUser} from "../../redux/authReducer";
+import showPriceInCurrency from "../../utils/showPriceInCurrency"
 
 
-
-
-const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose, order, auth, profile, saveOrderToUser}) => {
+const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose, order, auth, profile, saveOrderToUser, currency}) => {
 
     const validationSchema = yup.object().shape({
 
@@ -74,8 +73,10 @@ const ModalWindowCheckout = ({cartQty, subTotal, deliveryCost, show, handleClose
                             <p className="col text-about-input text-sum"> Pizzas: {cartQty === 0 ? '' : cartQty}</p>
                         </div>
                         <div className="row mr-5 text-right">
-                            <p className="col text-about-input text-sum">TOTAL SUM: <i
-                                className="fas fa-dollar-sign fa-dollar-sign-summary-text"/> {(subTotal + deliveryCost).toFixed(2)}
+                            <p className="col text-about-input text-sum">TOTAL SUM: { (currency === 'USD')
+                                ? <i className="fas fa-dollar-sign fa-dollar-sign-summary-text"/>
+                                : <i className="fas fa-euro-sign fa-dollar-sign-summary-text"/>}
+                                {showPriceInCurrency((subTotal + deliveryCost).toFixed(2))}
                             </p>
                         </div>
                         <hr/>
@@ -154,7 +155,7 @@ let mapStateToProps = (state) => {
         deliveryCost: state.cart.deliveryCost,
         auth: state.firebase.auth,
         profile: state.firebase.profile,
-
+        currency: state.home.currency
     }
 }
 

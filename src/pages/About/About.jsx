@@ -61,6 +61,9 @@ const About = () => {
                                 name
                             </div>
                         </li>
+                        <li>
+                            <div>You may choose the currency: EUR or USD </div>
+                        </li>
                     </ul>
                 </div>
                 <h3 className="col-12 text-about my-4 text-about-ty"> Thank you for using our app ! </h3>
